@@ -1,0 +1,61 @@
+Parametric design needs arithmetic terms for many of its dimensions.
+These terms compute the dimension after parameters like 
+width, height, depth, thickness were input.
+
+Svg files can store arbitrary meta information, but inkscape would not parse
+and visualize most of it properly.
+
+The specifiction for a path is 
+http://www.w3.org/TR/SVG/paths.html#PathDataBNF
+
+
+Idea 1
+======
+
+Title and description are available on right clicking an object
+and are quite eaily accessible in the svg:
+     <a>
+      <desc id="desc3763">quadrat-beschreibung</desc>
+      <title id="title3761">quadrat-titel</title>
+      <rect>
+      </rect>
+     </a>
+     <path style=".." id="path3767"
+       d="m 283.46457,177.16529 0,354.33071"
+       transform="translate(0,-10.629915)">
+      <desc id="desc3769">(2*w, h-t)-(3*w, 2*h+t)</desc>
+    </path>
+
+
+    the description contains a 1:1 mapping to the four values of the d="" 
+    attribute. note that subsequent path points in d are relative to the first
+    point, but our description may prefer to have all in absolute coordinates.
+
+Each template must have exactly one <rect> with title "Dimensions"
+and a description in the form of assignments, one per line. Optionally
+follwowed by a list of assertions in pythonic syntax:
+
+	w=12
+	h=22
+	d=32
+	t=1
+	assert(w>4)
+	assert(min([w,h,d]>=2*t))
+
+Idea 2
+======
+We use Arrows "with text near to them" for specifying dimensions.
+ Arrows pointing horizontally carry an x-coordinate.
+ Arrows pointing vertically carry an y-corrdinate.
+ Arrows pointing at an angle 10 deg or more slanted, carry an (x,y) pair.
+
+Standard arrows only have one end. These coordinates are absolute.
+ Optionally, we may allow arrows with two ends, 
+ (pointing in exaclty opposite direction!) these carry relative coordinates.
+
+For all drawn coordinates, matching arrows are searched. 
+ an arrow matches a coordinate, if it is drawn at (almost) the same coordinate.
+ (use guides to snap).
+ If muliple arrows are at the same coodinate, then arrows are matched by color.
+
+ZZ
