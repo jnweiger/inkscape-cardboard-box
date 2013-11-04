@@ -54,3 +54,13 @@ All coordinates that do not have matching arrows are interpolated using the two 
 Take care to always put arrows on the extreme left, extreme right, extrem top
 and extreme bottom of your design. It is an error if these are missing. No
 extrapolation is done.
+
+You may use horizontal guides to properly align your vertical arrows with the corners of your design. And vertical guides for aligning horizontal arrows.
+Take care to have only one arrow per guide. Multiple (non-identical) terms at the same guide are an error.
+
+Take care that independant edges and corners do not align. If they happen to
+align when constructed correctly, you are free to give them a (small) offset in
+one direction, so that independant arrows can be used.
+Correct to scale construction of the design is not important for the computation. 
+Only alignment with arrows matters. 
+
