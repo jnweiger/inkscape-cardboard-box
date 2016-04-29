@@ -1,3 +1,9 @@
+
+=========================
+Unfinished. Idea only. No code here
+=========================
+
+
 inkscape-cardboard-box
 ======================
 
